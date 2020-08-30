@@ -36,8 +36,8 @@ namespace AspDotnetCoreApp
             DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
             defaultFilesOptions.DefaultFileNames.Clear();
             defaultFilesOptions.DefaultFileNames.Add("BasicPage.html");
-            app.UseDefaultFiles(defaultFilesOptions);
-            app.UseStaticFiles();
+            app.UseDefaultFiles(defaultFilesOptions); // Setting the default page
+            app.UseStaticFiles(); // Enable Directory Browsing.(wwwroot folder)
             
             app.Run(async (context) =>
             {
