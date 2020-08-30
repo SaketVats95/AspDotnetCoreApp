@@ -33,12 +33,12 @@ namespace AspDotnetCoreApp
                 app.UseDeveloperExceptionPage();
             }
 
-            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            defaultFilesOptions.DefaultFileNames.Add("BasicPage.html");
-            app.UseDefaultFiles(defaultFilesOptions); // Setting the default page
-            app.UseStaticFiles(); // Enable Directory Browsing.(wwwroot folder)
-            
+            FileServerOptions fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();// defaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("BasicPage.html");//defaultFilesOptions.DefaultFileNames.Add("BasicPage.html");
+
+            app.UseFileServer(fileServerOptions);
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World");
