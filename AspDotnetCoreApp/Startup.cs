@@ -31,10 +31,13 @@ namespace AspDotnetCoreApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("myKey="+_config["MyKey"]+"<br/>----------- Worker Process Name : "+ System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+                await context.Response.WriteAsync("Hello From First Middleware");
+            });
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello From 2nd Middleware");
             });
         }
     }
