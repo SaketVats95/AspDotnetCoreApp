@@ -26,29 +26,20 @@ namespace AspDotnetCoreApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW1: Incomming Request");
-                await next();
-                logger.LogInformation("MW1: Outgoing Response");
-            });
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW2: Incomming Request");
-                await next();
-                logger.LogInformation("MW2: Outgoing Response");
-            });
+
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("MW3: Request handled and response produced");
-                logger.LogInformation("MW3: Request handled and response produced");
+                await context.Response.WriteAsync("Hello World");
             });
         }
     }
