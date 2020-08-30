@@ -27,7 +27,7 @@ namespace AspDotnetCoreApp
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Hello World!"+"<br/>----------- Worker Process Name : "+ System.Diagnostics.Process.GetCurrentProcess().ProcessName);
             });
         }
     }
