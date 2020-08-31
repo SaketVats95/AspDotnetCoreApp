@@ -30,7 +30,9 @@ namespace AspDotnetCoreApp
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                DeveloperExceptionPageOptions developerExceptionPageOptions = new DeveloperExceptionPageOptions();
+                developerExceptionPageOptions.SourceCodeLineCount = 1;
+                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
 
             FileServerOptions fileServerOptions = new FileServerOptions();
@@ -41,7 +43,8 @@ namespace AspDotnetCoreApp
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World");
+                throw new Exception("Error from middleware");
+               // await context.Response.WriteAsync("Hello World");
             });
         }
     }
