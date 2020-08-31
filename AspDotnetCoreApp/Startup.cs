@@ -35,16 +35,17 @@ namespace AspDotnetCoreApp
                 app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
 
-            FileServerOptions fileServerOptions = new FileServerOptions();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();// defaultFilesOptions.DefaultFileNames.Clear();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("BasicPage.html");//defaultFilesOptions.DefaultFileNames.Add("BasicPage.html");
+            //FileServerOptions fileServerOptions = new FileServerOptions();
+            //fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();// defaultFilesOptions.DefaultFileNames.Clear();
+            //fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("BasicPage.html");//defaultFilesOptions.DefaultFileNames.Add("BasicPage.html");
 
-            app.UseFileServer(fileServerOptions);
+            ////app.UseFileServer(fileServerOptions);
 
             app.Run(async (context) =>
             {
-                throw new Exception("Error from middleware");
-               // await context.Response.WriteAsync("Hello World");
+                //throw new Exception("Error from middleware");
+               await context.Response.WriteAsync("Hello World!!!!!!!!!"+"Enviroment Name :" + env.EnvironmentName);// Default environment is production
+                // "ASPNETCORE_ENVIRONMENT" variable in launchSetting.json store information related to Enviroment. 
             });
         }
     }
